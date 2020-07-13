@@ -5,22 +5,21 @@ import Title from '../components/Title';
 
 // get all unique values
 const getUnique = (items, value) => {
-    let toArray = Array.from(items);
-
-    return [...new Set(toArray.map(item => item[value]))];
+    return [...new Set(items.map(item => item[value]))];
 };
 
-export default function RoomsFilter(rooms) {
+export default function RoomsFilter({ rooms }) {
 
     const context = useContext(RoomContext);
     const {handleChange,type,capacity,price,
         minPrice, maxPrice,minSize,maxSize,
         breakfast,pets} = context;
 
+
 // get unique types
     let types = getUnique(rooms,'type');
 // add all
-     types = ["all", ...types];
+    types = ['all', ...types];
 // map to jsx
     types = types.map((item, index) => {
         return (
@@ -30,7 +29,7 @@ export default function RoomsFilter(rooms) {
         );
     });
 
-    let people = getUnique(rooms, "capacity");
+    let people = getUnique(rooms, 'capacity');
      people = people.map((item, index) => {
         return (
             <option key={index} value={item}>
